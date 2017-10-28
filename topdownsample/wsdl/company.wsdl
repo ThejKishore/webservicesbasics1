@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="Company"
+                  targetNamespace="http://www.memorylack.com/company"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:tns="http://www.memorylack.com/company"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <wsdl:types>
+        <xsd:schema>
+            <xsd:import namespace="http://www.memorylack.com/company"  schemaLocation="company.xsd" />
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="employeeLookupRequest">
+        <wsdl:part element="tns:EmployeeIdList" name="employeeIdList" />
+    </wsdl:message>
+
+    <wsdl:message name="employeeLookupResponse">
+        <wsdl:part element="tns:EmployeeInfoList" name="employeeInfoList" />
+    </wsdl:message>
+
+    <wsdl:portType name="employeeLookupService">
+        <wsdl:operation name="employeeLookup">
+            <wsdl:input message="tns:employeeLookupRequest" />
+            <wsdl:output message="tns:employeeLookupResponse" />
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="employeeLookupBinding" type="tns:employeeLookupService">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="employeeLookup">
+            <soap:operation
+                    soapAction="http://www.memorylack.com/company/employeeLookup" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="employeeLookupService">
+        <wsdl:port binding="tns:employeeLookupBinding" name="employeeLookupPort">
+            <soap:address location="http://localhost" />
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,26 @@
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:cs="http://kish.com/schemas/services/customer">
+
+    <!-- importing the customer.xsd and mapping the namespace -->
+    <wsdl:types>
+        <xsd:schema>
+            <xsd:import schemaLocation="customer.xsd" namespace="http://kish.com/schemas/services/customer" />
+        </xsd:schema>
+    </wsdl:types>
+
+    <!-- creating the request data type-->
+    <wsdl:message name="getCustomerRq">
+        <wsdl:part name="firstName" type="xsd:string"/>
+    </wsdl:message>
+
+    <!-- creating the response data type-->
+    <wsdl:message name="getCutomerRs">
+        <wsdl:part name="customerList" element="cs:customers"/>
+    </wsdl:message>
+
+
+
+
+</wsdl:definitions>
